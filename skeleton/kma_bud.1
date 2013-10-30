@@ -1,6 +1,6 @@
-.TH KMA_BUD
+.TH kma_bud
 .SH NAME
-tsh \- Implementation of the Buddy System for our kernel memory allocator
+kma_bud \- Implementation of the Buddy System for our kernel memory allocator
 .SH DESCRIPTION
 .B kma_bud pseudocode
 Buddy System: Allocating Memory
@@ -19,8 +19,7 @@ and return its address (putting the unused blocks onto the appropriate lists
 We initially had a bitmap for the buddy system, but we decided to go with 
 a block header for each block because with bitmaps for every page smaller 
 than page size/2 there is a 512B-bitmap header. This saves space unless each 
-page is filled with a lot of separately allocated blocks. The headers are blocks,
- which manage each malloc/free. 
+page is filled with a lot of separately allocated blocks. The headers are blocks,which manage each malloc/free. 
 
 
 .SH AUTHOR
