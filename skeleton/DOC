@@ -11,7 +11,7 @@ All tests passed.
 Reals from tests: 1.84, 0.97, 0.83, 0.77, 3.29, 94.28
 
 Buddy System:
-We initially had a bitmap for each page in the buddy system, but we decided to go with a block header for each block. With the bitmap method, every page smaller than PAGESIZE/2 would have a 512 byte header. This is efficient when there are many smaller blocks, but otherwise block headers are more efficient. The initial page holds the header, which manages free blocks. Otherwise, each block has a block_t structure acting as its header.
+We initially had a bitmap for each page in the buddy system, but we decided to go with a block header for each block. With the bitmap method, every page smaller than PAGESIZE/2 would have a 512 byte header. This is efficient when there are many smaller blocks, but otherwise block headers are more efficient. The initial page holds the header, which manages free blocks. Otherwise, each block has a block_t structure acting as its header. The minimum block size is 16. 32 was too large, and an extra empty list does not affect efficiency as a lot of wasted space in 32 byte blocks.
 All tests passed.
 Reals from tests: 0.27, 0.20, 0.30, 0.45, 1.04
 
