@@ -11,8 +11,8 @@
 ###############################################################################
 
 # handin info
-TEAM = `whoami`
-VERSION = `date +%Y%m%d%H%M%S`
+TEAM = 'fhh564+ija144+pjh693'
+VERSION = `date +2013%10%29%8%15%00`
 PROJ = kma
 
 COMPETITION = KMA_DUMMY
