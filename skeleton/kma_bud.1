@@ -1,0 +1,27 @@
+.TH KMA_BUD
+.SH NAME
+tsh \- Implementation of the Buddy System for our kernel memory allocator
+.SH DESCRIPTION
+.B kma_bud pseudocode
+Buddy System: Allocating Memory
+Given an allocation request for M bytes of memory, first compute the
+smallest power of 2 greater than or equal to M; call that
+Then:
+Look at the list of free nodes of size
+ if it’s non-empty then take a node off of the list and return its address
+Else, keep going up in size by powers of 2 and look at the appropriate
+lists until we find a non-empty list (if no such list exists then we’ve
+run out of memory)
+Break the resulting block of memory down until we’ve gotten a block of size
+and return its address (putting the unused blocks onto the appropriate lists
+
+.SH DESIGN DECISIONS
+We initially had a bitmap for the buddy system, but we decided to go with 
+a block header for each block because with bitmaps for every page smaller 
+than page size/2 there is a 512B-bitmap header. This saves space unless each 
+page is filled with a lot of separately allocated blocks. The headers are blocks,
+ which manage each malloc/free. 
+
+
+.SH AUTHOR
+Irsal Jasebel Alsanea, Patrick Hayes, Felix Hu

@@ -1,0 +1,34 @@
+.TH KMA_RM
+.SH NAME
+tsh \- Resource Map Algorithm with First Fit Algorithm
+.SH DESCRIPTION
+.B kma_rm psuedocode
+size(block) = n + size(header)
+Scan free list for first block with nWords >= size(block)
+If block not found
+    Failure (time for garbage collection!)
+Else if free block nWords >= size(block) + threshold*
+    Split into a free block and an in-use block
+    Free block nWords = Free block nWords - size(block)
+    In-use block nWords = size(block)
+    Return pointer to in-use block
+Else
+    Unlink block from free list
+    Return pointer to block
+     
+
+.SH DESIGN DECISIONS
+We decided to go with the first free algorithm. This is generally the fastest 
+among the algorithms typically. Each page has a header containing the number 
+of total pages in order to iterate through the headers without using a linked 
+list. It also keeps track of the number of blocks allocated in the free list for 
+each header, so that the page can be freed if it isn't storing anything. The free
+ lists are kept track of by using a block structure, which keeps track of its 
+own size and what page it came from. The free lists of blocks that are kept in 
+each header are doubly linked for easy removal. When searching for free space, 
+the first fit algorithm was used because it was easiest to implement, and is also
+ the quickest in finding a fit
+
+
+.SH AUTHOR
+Irsal Jasebel Alsanea, Patrick Hayes, Felix Hu
